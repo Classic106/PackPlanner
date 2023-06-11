@@ -1,7 +1,15 @@
 import * as THREE from "three";
 import { IBox, IVueCustomScrollbar, IPackedBox } from "~/types";
 
-export interface IIndexTypes {
+export interface IArea {
+  value: number;
+  rowIndex: number;
+  rowCount: number;
+  columnIndex: number;
+  columnCount: number;
+}
+
+export interface IIndex{
   isVariants: Boolean;
   activeVariant: string;
   isPersentage: Boolean;
@@ -33,30 +41,6 @@ export interface IItemsTypes {
   filter: string | null;
   currentItems: IBox[];
   settings: IVueCustomScrollbar;
-}
-
-export interface IPlannerVisualTypes {
-  autoPack: Boolean;
-  nextItem: Boolean;
-  canvas: HTMLCanvasElement | null;
-  renderer: THREE.WebGLRenderer | null;
-  camera: THREE.PerspectiveCamera | null;
-  scene: THREE.Scene | null;
-  view1Elem: HTMLElement | null;
-  scale: number;
-  packedItems: IPackedBox[];
-  floorPlaneSize: number;
-  currentItems: IPackedBox[];
-  copiedItems: IPackedBox[];
-  boxUuids: string[];
-  itemsUuids: string[];
-  boxesData: {
-    [key: string]: {
-      volume: number[][];
-      height: number;
-    };
-  };
-  boxFilled: string[];
 }
 
 export default {};

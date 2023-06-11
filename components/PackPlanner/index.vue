@@ -102,15 +102,15 @@ import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
 
 import { IBox, EDimension, EWeight_dimension } from "~/types";
-import { IIndexTypes } from "./types";
+import { IIndex } from "./types";
 import { convertSizes, randomIntFromInterval } from "~/utils/functions";
 
-import PlannerVisual from "./PlannerVisual/index.vue";
+import PlannerVisual from "./PlannerVisual.vue";
 
 export default Vue.extend({
   name: "PackagePlanner",
   components: { PlannerVisual },
-  data: (): IIndexTypes => ({
+  data: (): IIndex => ({
     isVariants: false,
     activeVariant: "",
     isPersentage: false,
@@ -215,7 +215,7 @@ export default Vue.extend({
       switch (variant) {
         case "same":
           this.activeVariant = "Same";
-          this.variant = sameVolumes;
+          this.variant = sameVolumes[0];
           break;
         case "upper":
           this.activeVariant = "Upper";
@@ -483,10 +483,10 @@ export default Vue.extend({
       }
     },
     init: function () {
-      this.currentItems = [...(this.packs as IBox[])].map((item) => {
-        const box = this.convertSizes(item);
-        this.setMaxs(box);
-        return item;
+      this.currentItems = [...(this.packs as IBox[])].map((pack) => {
+        const converted_pack = this.convertSizes(pack);
+        this.setMaxs(converted_pack);
+        return converted_pack;
       });
 
       this.currentBoxes = [...(this.boxes as IBox[])]
